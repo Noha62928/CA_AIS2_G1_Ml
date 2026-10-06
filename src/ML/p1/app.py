@@ -7,6 +7,7 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import make_scorer
+from pathlib import Path
 st.set_page_config(
     page_title="Boston Housing Price Prediction",
     layout="wide"
@@ -81,8 +82,12 @@ name = st.text_input("What is your name?")
 if st.button("Submit"): 
     st.write("Hello", name)
 @st.cache_data
+  #    def load_data():
+  #  return pd.read_csv("housing.csv")
+
 def load_data():
-    return pd.read_csv("housing.csv")
+    file_path = Path(__file__).parent / "housing.csv"
+    return pd.read_csv(file_path)
 data = load_data()
 st.sidebar.header("Navigation")
 
