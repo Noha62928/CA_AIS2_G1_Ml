@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finding Donors | Income Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="icon">📊</div>
+        <h1>Finding Donors</h1>
+        <p>Machine Learning Income Prediction Dashboard</p>
+    </header>
+
+    <!-- Input Form -->
+    <section class="form-card">
+
+        <h2>Personal Information</h2>
+
+        <p class="description">
+            Enter your information to predict the income category
+            using different Machine Learning algorithms.
+        </p>
+
+        <form method="POST" action="/">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age"
+                           min="1" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Workclass</label>
+                    <select name="workclass" required>
+                        <option value="">Select Workclass</option>
+                        <option value=" Federal-gov">Federal Government</option>
+                        <option value=" Local-gov">Local Government</option>
+                        <option value=" Private">Private</option>
+                        <option value=" Self-emp-inc">Self Employed Incorporated</option>
+                        <option value=" Self-emp-not-inc">Self Employed</option>
+                        <option value=" State-gov">State Government</option>
+                        <option value=" Without-pay">Without Pay</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Education Level</label>
+                    <select name="education_level" required>
+                        <option value="">Select Education</option>
+                        <option value=" 10th">10th</option>
+                        <option value=" 11th">11th</option>
+                        <option value=" 12th">12th</option>
+                        <option value=" 1st-4th">1st-4th</option>
+                        <option value=" 5th-6th">5th-6th</option>
+                        <option value=" 7th-8th">7th-8th</option>
+                        <option value=" 9th">9th</option>
+                        <option value=" Assoc-acdm">Associate Academic</option>
+                        <option value=" Assoc-voc">Associate Vocational</option>
+                        <option value=" Bachelors">Bachelor's</option>
+                        <option value=" Doctorate">Doctorate</option>
+                        <option value=" HS-grad">High School Graduate</option>
+                        <option value=" Masters">Master's</option>
+                        <option value=" Preschool">Preschool</option>
+                        <option value=" Prof-school">Professional School</option>
+                        <option value=" Some-college">Some College</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Education Number</label>
+                    <input type="number" name="education_num"
+                           min="1" max="16" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Marital Status</label>
+                    <select name="marital_status" required>
+                        <option value="">Select Marital Status</option>
+                        <option value=" Divorced">Divorced</option>
+                        <option value=" Married-AF-spouse">Married AF Spouse</option>
+                        <option value=" Married-civ-spouse">Married Civilian Spouse</option>
+                        <option value=" Married-spouse-absent">Married Spouse Absent</option>
+                        <option value=" Never-married">Never Married</option>
+                        <option value=" Separated">Separated</option>
+                        <option value=" Widowed">Widowed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Occupation</label>
+                    <select name="occupation" required>
+                        <option value="">Select Occupation</option>
+                        <option value=" Adm-clerical">Administrative Clerical</option>
+                        <option value=" Armed-Forces">Armed Forces</option>
+                        <option value=" Craft-repair">Craft Repair</option>
+                        <option value=" Exec-managerial">Executive Managerial</option>
+                        <option value=" Farming-fishing">Farming Fishing</option>
+                        <option value=" Handlers-cleaners">Handlers Cleaners</option>
+                        <option value=" Machine-op-inspct">Machine Operator</option>
+                        <option value=" Other-service">Other Service</option>
+                        <option value=" Priv-house-serv">Private House Service</option>
+                        <option value=" Prof-specialty">Professional Specialty</option>
+                        <option value=" Protective-serv">Protective Service</option>
+                        <option value=" Sales">Sales</option>
+                        <option value=" Tech-support">Tech Support</option>
+                        <option value=" Transport-moving">Transport Moving</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Relationship</label>
+                    <select name="relationship" required>
+                        <option value="">Select Relationship</option>
+                        <option value=" Husband">Husband</option>
+                        <option value=" Not-in-family">Not in Family</option>
+                        <option value=" Other-relative">Other Relative</option>
+                        <option value=" Own-child">Own Child</option>
+                        <option value=" Unmarried">Unmarried</option>
+                        <option value=" Wife">Wife</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Race</label>
+                    <select name="race" required>
+                        <option value="">Select Race</option>
+                        <option value=" Amer-Indian-Eskimo">American Indian Eskimo</option>
+                        <option value=" Asian-Pac-Islander">Asian Pacific Islander</option>
+                        <option value=" Black">Black</option>
+                        <option value=" Other">Other</option>
+                        <option value=" White">White</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Sex</label>
+                    <select name="sex" required>
+                        <option value="">Select Sex</option>
+                        <option value=" Female">Female</option>
+                        <option value=" Male">Male</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Capital Gain</label>
+                    <input type="number" name="capital_gain"
+                           min="0" value="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Capital Loss</label>
+                    <input type="number" name="capital_loss"
+                           min="0" value="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Hours per Week</label>
+                    <input type="number" name="hours_per_week"
+                           min="1" max="168" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Native Country</label>
+                    <select name="native_country" required>
+                        <option value="">Select Country</option>
+                        <option value=" Cambodia">Cambodia</option>
+                        <option value=" Canada">Canada</option>
+                        <option value=" China">China</option>
+                        <option value=" Columbia">Columbia</option>
+                        <option value=" Cuba">Cuba</option>
+                        <option value=" Dominican-Republic">Dominican Republic</option>
+                        <option value=" Ecuador">Ecuador</option>
+                        <option value=" El-Salvador">El Salvador</option>
+                        <option value=" England">England</option>
+                        <option value=" France">France</option>
+                        <option value=" Germany">Germany</option>
+                        <option value=" Greece">Greece</option>
+                        <option value=" Guatemala">Guatemala</option>
+                        <option value=" Haiti">Haiti</option>
+                        <option value=" Holand-Netherlands">Holand Netherlands</option>
+                        <option value=" Honduras">Honduras</option>
+                        <option value=" Hong">Hong</option>
+                        <option value=" Hungary">Hungary</option>
+                        <option value=" India">India</option>
+                        <option value=" Iran">Iran</option>
+                        <option value=" Ireland">Ireland</option>
+                        <option value=" Italy">Italy</option>
+                        <option value=" Jamaica">Jamaica</option>
+                        <option value=" Japan">Japan</option>
+                        <option value=" Laos">Laos</option>
+                        <option value=" Mexico">Mexico</option>
+                        <option value=" Nicaragua">Nicaragua</option>
+                        <option value=" Outlying-US(Guam-USVI-etc)">Outlying US</option>
+                        <option value=" Peru">Peru</option>
+                        <option value=" Philippines">Philippines</option>
+                        <option value=" Poland">Poland</option>
+                        <option value=" Portugal">Portugal</option>
+                        <option value=" Puerto-Rico">Puerto Rico</option>
+                        <option value=" Scotland">Scotland</option>
+                        <option value=" South">South</option>
+                        <option value=" Taiwan">Taiwan</option>
+                        <option value=" Thailand">Thailand</option>
+                        <option value=" Trinadad&Tobago">Trinidad and Tobago</option>
+                        <option value=" United-States">United States</option>
+                        <option value=" Vietnam">Vietnam</option>
+                        <option value=" Yugoslavia">Yugoslavia</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="predict-btn">
+                Predict Income →
+            </button>
+
+        </form>
+
+        <div class="footer">
+            Powered by Machine Learning
+        </div>
+
+    </section>
+
+    <!-- Prediction Results -->
+    {% if predictions %}
+
+    <section class="results-section">
+
+        <h2>Prediction Results</h2>
+
+        <p class="description">
+            Compare predictions from different Machine Learning algorithms.
+        </p>
+
+        <div class="results-grid">
+
+            {% for name, result in predictions.items() %}
+
+            <div class="result-card">
+
+                <h3>{{ name }}</h3>
+
+                <p class="prediction-label">Predicted Income</p>
+
+                <div class="prediction-value">
+                    {{ result.prediction }}
+                </div>
+
+                {% if result.probability is not none %}
+                <p class="probability">
+                    Confidence: {{ result.probability }}%
+                </p>
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
